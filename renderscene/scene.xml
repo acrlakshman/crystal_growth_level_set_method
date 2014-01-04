@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<scene version="0.4.5">
+
+  <integrator type="path">
+    <!-- Path trace with a max. path length of 8 -->
+    <integer name="maxDepth" value="8" />
+  </integrator>
+
+  <!-- Instantiate a perspective camera -->
+  <sensor type="perspective" id="pcamera">
+
+    <transform name="toWorld">
+      <rotate y="1" angle="0." />
+      <lookAt target="0.0, 0.0, 0.0" origin="-6.0, -1.0, -3.0" up="0,1,0"/>
+    </transform>
+    <string name="fovAxis" value="smaller"/>
+    <float name="focusDistance" value="6.0"/>
+    <float name="fov" value="45.0"/>
+
+    <sampler type="independent">
+      <integer name="sampleCount" value="32" />
+    </sampler>
+
+    <film type="hdrfilm" id="film">
+      <integer name="width" value="1920"/>
+      <integer name="height" value="1080"/>
+      <string name="pixelFormat" value="rgb"/>
+      <boolean name="banner" value="true"/>
+      <rfilter type="gaussian"/>
+    </film>
+
+  </sensor>
+
+  <bsdf type="roughdielectric" id="myNamedMaterial">
+    <!--<string name="distribution" value="ggx"/>-->
+    <string name="intIOR" value="water ice"/>
+    <string name="extIOR" value="air"/>
+    <float name="alpha" value=".001"/>
+  </bsdf>
+
+  <!-- Add crystal obj file -->
+  <shape type="obj">
+    <string name="filename" value="$filename"/>
+    <ref id="myNamedMaterial" />
+
+  </shape>
+
+  <emitter type="envmap" id="Area_002-light">
+  	<string name="filename" value="envmap.exr"/>
+  	<transform name="toWorld">
+  		<rotate y="1" angle="-180"/>
+  		<matrix value="-0.224951 -0.000001 -0.974370 0.000000 -0.974370 0.000000 0.224951 0.000000 0.000000 1.000000 -0.000001 8.870000 0.000000 0.000000 0.000000 1.000000 "/>
+  	</transform>
+  	<float name="scale" value="0.5"/>
+  </emitter>
+
+</scene>
