@@ -18,3 +18,7 @@ Prerequisites in using movie.sh:
 
 	* exrtopng
 	* ffmpeg
+
+Building with CMake
+-------------------
+Check '/Projects/user_projects/' directory of [physbam_public](https://github.com/acrlakshman/physbam_public) repository to build this project and PhysBAM libraries with CMake.
